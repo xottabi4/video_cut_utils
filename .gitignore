@@ -1,0 +1,7 @@
+.idea/*
+/train.txt
+/venv/
+/input_images/*
+/input_images_roi/*
+/input_video_samples/*
+/input_image_samples.7z
