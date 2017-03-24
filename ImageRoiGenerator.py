@@ -44,13 +44,15 @@ def main():
                 if area_largest_contour < area:
                     area_largest_contour = area
                     idx_largest_contour = i
-            if area_largest_contour > 200:
+            if area_largest_contour > 25000:
                 # Let (x,y) be the top-left coordinate of the rectangle and (w,h) be its width and height.
                 x, y, w, h = cv2.boundingRect(contours[idx_largest_contour])
                 # frame = cv2.drawContours(frame, contours, idx_largest_contour, (0, 0, 255))
                 frame = cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
                 save_roi_to_xml_file(x, y, w, h, int(cap.get(cv2.CAP_PROP_POS_FRAMES)), image_name_file)
 
+        frame = cv2.resize(frame, (640, 360))
+        foreground_treshed = cv2.resize(foreground_treshed, (640, 360))
         cv2.imshow('frame', frame)
         cv2.imshow('mask(foreground)', foreground_treshed)
 
